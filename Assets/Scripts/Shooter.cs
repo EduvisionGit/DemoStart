@@ -7,6 +7,11 @@ public class Shooter : MonoBehaviour
 
     GameManager _gm;
 
+    [SerializeField] private Bullet base_bullet;
+
+    public float waveLength = 3f;
+    public float frequency = 2f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +25,12 @@ public class Shooter : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) // Print and update score attribute in GameManager instance
         {
-            Debug.Log(_gm.currentScore); 
-            _gm.currentScore++; 
+            Bullet curBullet = Instantiate(base_bullet, this.transform);
+            curBullet.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, 0);
+            curBullet.SetSpeed(frequency * waveLength);
+            curBullet.ShootBullet(this.transform.up);
         }
+
+
     }
 }
