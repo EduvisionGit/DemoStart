@@ -17,8 +17,12 @@ public class Troop : MonoBehaviour
     };
     int currentEnemyIndex = 0;
     [SerializeField] private Follower template;
+    GameObject path;
+    GameManager _gm;
     void Start()
     {
+        _gm = GameManager.instance;
+        path = _gm.current_level_path;
         template.MakeIdle();
         starterPos = GameObject.Find("StartingPosition");
     }
@@ -37,7 +41,7 @@ public class Troop : MonoBehaviour
             Follower clone = Instantiate(template,
                starterPos.transform.position, starterPos.transform.rotation
             ) as Follower;
-            clone.setUp(EnemyType.getHp(), EnemyType.getColor());
+            clone.setUp(EnemyType.getHp(), EnemyType.getColor(), path);
             Timer = 0;
             currentEnemyIndex++;
             currentEnemyIndex = currentEnemyIndex % enemies.Length;

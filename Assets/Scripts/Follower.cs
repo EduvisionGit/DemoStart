@@ -6,25 +6,23 @@ public class Follower : MonoBehaviour
 {
     //TODO: Delete follower when off screen
     Node[] Nodes;
+    GameManager _gm;
     public float speed = 2f;
     public float hp = 100f;
     Vector3 nextNodePosition;
     int indexInNodes = 0;
     bool follow = true;
-    [SerializeField] private GameObject path;
     // Start is called before the first frame update
     void Start()
     {
-        GameObject path = GameObject.Find("Path");
-        Nodes = path.GetComponentsInChildren<Node>();
-        Debug.Log("Nodes: " + Nodes.Length.ToString());
-        nextNodePosition = Nodes[indexInNodes].transform.position;
     }
 
-    public void setUp(float HP, Color baseColor)
+    public void setUp(float HP, Color baseColor, GameObject path)
     {
         hp = HP;
         setColor(baseColor);
+        Nodes = path.GetComponentsInChildren<Node>();
+        nextNodePosition = Nodes[indexInNodes].transform.position;
     }
     private void setColor(Color new_color)
     {
