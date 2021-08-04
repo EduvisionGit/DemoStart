@@ -7,7 +7,7 @@ public class Follower : MonoBehaviour
     //TODO: Delete follower when off screen
     Node[] Nodes;
     GameManager _gm;
-    public float speed = 2f;
+    float speed;
     public float hp = 100f;
     Vector3 nextNodePosition;
     int indexInNodes = 0;
@@ -15,11 +15,13 @@ public class Follower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _gm = GameManager.instance;
     }
 
-    public void setUp(float HP, Color baseColor, GameObject path)
+    public void setUp(float HP, Color baseColor, GameObject path, float new_speed)
     {
         hp = HP;
+        speed =  new_speed;
         setColor(baseColor);
         Nodes = path.GetComponentsInChildren<Node>();
         nextNodePosition = Nodes[indexInNodes].transform.position;

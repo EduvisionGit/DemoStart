@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject current_level_path;
     public int currentScore = 0;
-
+    public float base_enemy_speed;
+    public Dictionary<int,(string,float)[]> levels;
     private void Awake()
     {
         if (instance == null)
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.levels = Utilities.Levels.getLevels();
     }
 
     // Update is called once per frame
